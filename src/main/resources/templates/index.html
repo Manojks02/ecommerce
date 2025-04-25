@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NeoKart - Redefining Shopping</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <style>
+    /* (Same styles as before for layout, dark mode, buttons, etc.) */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    body {
+      background-color: #0f0f0f;
+      color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    .navbar {
+      background: #1a1a1a;
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid #08fdd8;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo h1 {
+      font-size: 1.8rem;
+      color: #08fdd8;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .nav-btn {
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 0.9rem;
+    }
+
+    .login-btn {
+      background: transparent;
+      border: 2px solid #08fdd8;
+      color: #08fdd8;
+    }
+
+    .login-btn:hover {
+      background: #08fdd8;
+      color: #0f0f0f;
+    }
+
+    .register-btn {
+      background: #08fdd8;
+      color: #0f0f0f;
+      border: none;
+    }
+
+    .register-btn:hover {
+      background: #06c3ac;
+    }
+
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: #1f1f1f;
+      min-width: 200px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #08fdd8;
+      z-index: 100;
+    }
+
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+
+    .dropdown-option {
+      color: #ccc;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      transition: background 0.3s;
+    }
+
+    .dropdown-option:hover {
+      background-color: #2a2a2a;
+      color: #08fdd8;
+    }
+
+    .hero {
+      background: radial-gradient(circle at top left, #0f0f0f 20%, #1c1c1c 100%);
+      text-align: center;
+      padding: 6rem 5%;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      color: #08fdd8;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      color: #ccc;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+    }
+
+    .cta-btn {
+      background: #08fdd8;
+      color: #0f0f0f;
+      padding: 14px 30px;
+      font-size: 1rem;
+      border-radius: 50px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 0 12px #08fdd8;
+    }
+
+    .cta-btn:hover {
+      background: #06c3ac;
+      box-shadow: 0 0 20px #08fdd8;
+    }
+
+    .features {
+      background: #121212;
+      padding: 5rem 5%;
+      text-align: center;
+    }
+
+    .features h2 {
+      font-size: 2.4rem;
+      color: #08fdd8;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .feature-card {
+      background-color: #1f1f1f;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(8, 253, 216, 0.1);
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 0 15px rgba(8, 253, 216, 0.2);
+    }
+
+    .feature-icon {
+      font-size: 2.8rem;
+      color: #08fdd8;
+      margin-bottom: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.3rem;
+      color: #ffffff;
+      margin-bottom: 0.8rem;
+    }
+
+    .feature-card p {
+      color: #aaa;
+      line-height: 1.6;
+    }
+
+    .footer {
+      background: #1a1a1a;
+      color: #aaa;
+      padding: 2rem 5%;
+      text-align: center;
+    }
+
+    .footer h3 {
+      color: #08fdd8;
+      margin-bottom: 1rem;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid #333;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.7;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .features h2 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="logo">
+      <a href="/"><img src="/images/logo.jpeg" alt="NeoKart Logo" /></a>
+      <h1>NeoKart</h1>
+    </div>
+    <div class="nav-buttons">
+      <a href="/login"><button class="nav-btn login-btn">Login</button></a>
+      <div class="dropdown">
+        <button class="nav-btn register-btn">Register</button>
+        <div class="dropdown-content">
+          <a href="/admin/register" class="dropdown-option">Admin Register</a>
+          <a href="/merchant/register" class="dropdown-option">Merchant Register</a>
+          <a href="/customer/register" class="dropdown-option">Customer Register</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>Welcome to NeoKart</h1>
+    <p>Lightning-fast service, unbeatable deals, and secure shopping—all in one place. Start your journey today!</p>
+    <a href="/login"><button class="cta-btn">Start Shopping</button></a>
+  </section>
+
+  <section class="features">
+    <h2>Our Promise</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-rocket"></i></div>
+        <h3>Ultra-Fast Shipping</h3>
+        <p>Enjoy next-day delivery with our optimized logistics network across the country.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-lock"></i></div>
+        <h3>Trusted Security</h3>
+        <p>Encrypted transactions and data privacy protection at every step of your journey.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-thumbs-up"></i></div>
+        <h3>Customer Satisfaction</h3>
+        <p>We're here for you 24/7 with a no-hassle return policy and great support.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <h3>About NeoKart</h3>
+    <p>
+      NeoKart is a cutting-edge online marketplace designed to bring speed and satisfaction to your fingertips. Whether you’re a casual buyer or a power shopper, we've got you covered.
+    </p>
+    <div class="footer-bottom">
+      <p>&copy; 2025 NeoKart. All Rights Reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
