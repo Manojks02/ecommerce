@@ -37,8 +37,12 @@ public class Product {
 	private String imageUrl;
 	@Enumerated(EnumType.STRING)
 	private Status status;
+	@Column(nullable = false)
+	private Integer stock;
 	@UpdateTimestamp
 	private LocalDateTime createdTime;
+	
+	private String reason;
 
 	@ManyToOne
 	Merchant merchant;
