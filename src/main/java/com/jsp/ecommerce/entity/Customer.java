@@ -28,4 +28,7 @@ public class Customer {
 	private String password;
 	@CreationTimestamp
 	private LocalDateTime createdTime;
+
+	private String address;
+	private Long mobile;
 }

@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,7 +55,48 @@ public class CustomerController {
 			@RequestParam(name = "category", required = false) String category,
 			@RequestParam(name = "sort", required = false) String sort,
 			@RequestParam(name = "search", required = false) String search) {
-		return customerService.viewProducts(session, model,category,sort,search);
+		return customerService.viewProducts(session, model, category, sort, search);
 	}
 
+	@GetMapping("/add-cart/{id}")
+	public String addToCart(@PathVariable("id") Long id, HttpSession session) {
+		return customerService.addToCart(id, session);
+	}
+
+	@GetMapping("/cart")
+	public String viewCart(HttpSession session, Model model) {
+		return customerService.viewCart(session, model);
+	}
+
+	@GetMapping("/increase/{id}")
+	public String increase(@PathVariable("id") Long id, HttpSession session) {
+		return customerService.increaseQuantity(id, session);
+	}
+
+	@GetMapping("/decrease/{id}")
+	public String decrease(@PathVariable("id") Long id, HttpSession session) {
+		return customerService.decreaseQuantity(id, session);
+	}
+
+	@GetMapping("/payment")
+	public String proceedPayment(HttpSession session, Model model) {
+		return customerService.proceedPayment(session, model);
+	}
+
+	@PostMapping("/payment/{id}")
+	public String confirmPayment(@PathVariable("id") Long id, @RequestParam("razorpay_payment_id") String paymentId,
+			HttpSession session) {
+		return customerService.confirmPament(id, paymentId, session);
+	}
+
+	@GetMapping("/manage-profile")
+	public String manageProfile(HttpSession session, Model model) {
+		return customerService.manageProfile(session, model);
+	}
+
+	@PostMapping("/manage-profile")
+	public String manageProfile(HttpSession session, @ModelAttribute UserDto dto, @RequestParam("address") String address,
+			@RequestParam("mobile") Long mobile) {
+		return customerService.manageProfile(session, dto, mobile, address);
+	}
 }
